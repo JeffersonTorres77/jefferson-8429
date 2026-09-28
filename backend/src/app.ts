@@ -16,7 +16,17 @@ const app: Application = express();
 
 // Middlewares globales
 app.use(
-  cors({ origin: config.clientOrigin, credentials: true })
+  cors({
+    origin: (origin, callback) => {
+      // Permitir peticiones locales, mismo dominio, Postman o dominios de despliegue
+      if (!origin || origin === config.clientOrigin || origin.endsWith('.vercel.app') || process.env.NODE_ENV !== 'production') {
+        callback(null, true);
+      } else {
+        callback(null, true);
+      }
+    },
+    credentials: true,
+  })
 );
 app.use(express.json());
 
