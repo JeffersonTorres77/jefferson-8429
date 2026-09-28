@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useMemo, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, useMemo, ReactNode, FC } from 'react';
 import { AuthState, LoginPayload, RegisterPayload, StoredUser, User } from '../types/auth';
 import { TransactionRecord } from '../types/payment';
 import { hashPassword, storageService } from '../services/storage.service';
@@ -14,7 +14,7 @@ interface AuthContextType extends AuthState {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [balance, setBalance] = useState<number>(0);
   const [transactions, setTransactions] = useState<TransactionRecord[]>([]);
@@ -93,7 +93,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setTransactions([]);
 
       return { success: true };
-    } catch (err) {
+    } catch {
       return { success: false, message: 'Ocurrió un error inesperado al procesar el registro.' };
     }
   };
