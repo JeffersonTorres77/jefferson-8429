@@ -46,10 +46,7 @@ export class SnailPayService {
     // ESCENARIO 3: Error del Sistema (Simulación de caída o indisponibilidad)
     // ------------------------------------------------------------------------
     if (simulateSystemError || dto.card_number === SnailPayService.SYSTEM_ERROR_CARD) {
-      throw new AppError(
-        'SnailPay Gateway Error: Falla interna en el procesador de pagos. Intente más tarde.',
-        500
-      );
+      throw new AppError('SnailPay Gateway Error: Falla interna en el procesador de pagos. Intente más tarde.', 500);
     }
 
     // ------------------------------------------------------------------------
@@ -58,42 +55,27 @@ export class SnailPayService {
 
     // A. Validación de fecha de expiración
     if (this.isCardExpired(dto.expiration_date)) {
-      throw new AppError(
-        'cc_rejected_card_expired: La tarjeta se encuentra vencida',
-        422
-      );
+      throw new AppError('cc_rejected_card_expired: La tarjeta se encuentra vencida', 422);
     }
 
     // B. Validación de tarjeta de prueba autorizada
     if (dto.card_number !== SnailPayService.SUCCESS_CARD) {
-      throw new AppError(
-        'cc_rejected_card_disabled: Número de tarjeta rechazado por la entidad emisora',
-        422
-      );
+      throw new AppError('cc_rejected_card_disabled: Número de tarjeta rechazado por la entidad emisora', 422);
     }
 
     // C. Validación de fecha exacta requerida para la tarjeta de prueba
     if (dto.expiration_date !== SnailPayService.SUCCESS_EXP) {
-      throw new AppError(
-        'cc_rejected_bad_filled_date: La fecha de vencimiento no coincide con los registros',
-        422
-      );
+      throw new AppError('cc_rejected_bad_filled_date: La fecha de vencimiento no coincide con los registros', 422);
     }
 
     // D. Validación de código de seguridad CVV
     if (dto.cvv !== SnailPayService.SUCCESS_CVV) {
-      throw new AppError(
-        'cc_rejected_bad_filled_security_code: Código de seguridad CVV inválido',
-        422
-      );
+      throw new AppError('cc_rejected_bad_filled_security_code: Código de seguridad CVV inválido', 422);
     }
 
     // E. Simulación de límite de monto (ej: montos mayores a ,000)
     if (dto.amount > 50000) {
-      throw new AppError(
-        'cc_rejected_insufficient_amount: El monto solicitado supera el límite autorizado por transacción',
-        422
-      );
+      throw new AppError('cc_rejected_insufficient_amount: El monto solicitado supera el límite autorizado por transacción', 422);
     }
 
     // ------------------------------------------------------------------------
