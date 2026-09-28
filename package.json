@@ -1,0 +1,31 @@
+﻿{
+  name: snail-racing-betting-platform,
+  version: 1.0.0,
+  description: Monorepo for the Snail Racing Betting Platform and SnailPay Gateway Mock,
+  private: true,
+  workspaces: [
+    backend,
+    frontend
+  ],
+  scripts: {
+    dev: concurrently "npm run dev --workspace=backend" "npm run dev --workspace=frontend",
+    dev:backend: npm run dev --workspace=backend,
+    dev:frontend: npm run dev --workspace=frontend,
+    build: npm run build --workspace=backend && npm run build --workspace=frontend,
+    test: npm run test --workspace=backend && npm run test --workspace=frontend,
+    test:backend: npm run test --workspace=backend,
+    test:frontend: npm run test --workspace=frontend
+  },
+  devDependencies: {
+    concurrently: ^8.2.2
+  },
+  keywords: [
+    snail-racing,
+    snailpay,
+    react,
+    express,
+    typescript
+  ],
+  author: ",
+ license: MIT
+}
