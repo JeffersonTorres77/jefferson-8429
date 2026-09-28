@@ -1,16 +1,18 @@
-﻿# Snail Racing & SnailPay Platform
+# Snail Racing & SnailPay Platform
 
 Plataforma web monorepo con temática de apuestas en carreras de caracoles y pasarela simulada de pagos (SnailPay).
 
+---
+
 ## 📁 Estructura del Monorepo
 
-`	ext
+```text
 ├── backend/                # Microservicio Express + TypeScript (Mock de SnailPay Gateway)
 │   ├── src/
 │   ├── tests/
 │   ├── package.json
 │   └── README.md
-├── frontend/               # Aplicación React + TypeScript (Vite + Tailwind CSS)
+├── frontend/               # Aplicación React + TypeScript (Vite + Tailwind CSS + React Router)
 │   ├── src/
 │   ├── tests/
 │   ├── package.json
@@ -18,50 +20,56 @@ Plataforma web monorepo con temática de apuestas en carreras de caracoles y pas
 ├── package.json            # Orquestador de scripts monorepo
 ├── .gitignore              # Configuración de exclusiones Git
 └── README.md               # Documentación general
-`
+```
+
+---
 
 ## 🚀 Requisitos Previos
 
 - [Node.js](https://nodejs.org/) (versión 18 o superior)
 - [npm](https://www.npmjs.com/) (versión 9 o superior)
 
+---
+
 ## 🛠️ Instalación General
 
 Para instalar las dependencias de todos los proyectos (raíz, backend y frontend):
 
-`ash
+```bash
 npm install
-`
+```
+
+---
 
 ## 💻 Ejecución del Entorno de Desarrollo
 
 Para ejecutar frontend y backend en simultáneo desde la raíz:
 
-`ash
+```bash
 npm run dev
-`
+```
 
 O para ejecutarlos de forma independiente:
 
-- **Backend:** 
-pm run dev:backend (por defecto en http://localhost:3001)
-- **Frontend:** 
-pm run dev:frontend (por defecto en http://localhost:5173)
+- **Backend:** `npm run dev:backend` (por defecto en http://localhost:3001)
+- **Frontend:** `npm run dev:frontend` (por defecto en http://localhost:5173)
+
+---
 
 ## 🧪 Pruebas Automatizadas
 
-Para ejecutar todas las pruebas automatizadas del proyecto:
+Para ejecutar todas las pruebas automatizadas del proyecto (Backend + Frontend):
 
-`ash
+```bash
 npm run test
-`
+```
 
 O individualmente:
 
-- **Pruebas del Backend:** 
-pm run test:backend
-- **Pruebas del Frontend:** 
-pm run test:frontend
+- **Pruebas del Backend:** `npm run test:backend`
+- **Pruebas del Frontend:** `npm run test:frontend`
+
+---
 
 ## 📚 Documentación Específica
 

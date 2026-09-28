@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { AuthProvider } from '../context/AuthContext';
+import { ModalProvider } from '../context/ModalContext';
 import { DashboardView } from '../components/dashboard/DashboardView';
 import { BetDonutChart } from '../components/dashboard/BetDonutChart';
 import { SnailBarChart } from '../components/dashboard/SnailBarChart';
@@ -26,9 +28,13 @@ describe('Dashboard & Chart Components', () => {
 
   it('debe renderizar el Dashboard con el nombre del usuario y saldo actual', () => {
     render(
-      <AuthProvider>
-        <DashboardView onOpenRechargeModal={() => {}} />
-      </AuthProvider>
+      <MemoryRouter>
+        <AuthProvider>
+          <ModalProvider>
+            <DashboardView onOpenRechargeModal={() => {}} />
+          </ModalProvider>
+        </AuthProvider>
+      </MemoryRouter>
     );
 
     expect(screen.getByText(/bienvenido de vuelta, piloto dashboard/i)).toBeInTheDocument();
@@ -53,10 +59,16 @@ describe('Dashboard & Chart Components', () => {
 
   it('debe mostrar mensaje amigable cuando no hay transacciones en el historial', () => {
     render(
-      <TransactionHistory
-        transactions={[]}
-        onOpenRechargeModal={() => {}}
-      />
+      <MemoryRouter>
+        <AuthProvider>
+          <ModalProvider>
+            <TransactionHistory
+              transactions={[]}
+              onOpenRechargeModal={() => {}}
+            />
+          </ModalProvider>
+        </AuthProvider>
+      </MemoryRouter>
     );
 
     expect(screen.getByText(/no hay transacciones registradas/i)).toBeInTheDocument();

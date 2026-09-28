@@ -22,21 +22,21 @@ export const Button: FC<ButtonProps> = ({
   rightIcon,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none';
+  const baseStyles = 'inline-flex items-center justify-center font-bold transition-all duration-150 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none';
 
   const sizeStyles = {
-    sm: 'px-3 py-1.5 text-xs gap-1.5',
-    md: 'px-4 py-2 text-sm gap-2',
-    lg: 'px-5 py-2.5 text-base gap-2.5',
+    sm: 'px-3.5 py-2 text-xs gap-1.5',
+    md: 'px-4 py-2.5 text-sm gap-2',
+    lg: 'px-5 py-3 text-base gap-2.5',
   };
 
   const variantStyles = {
-    primary: 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/40 focus:ring-emerald-500',
-    secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 focus:ring-slate-500',
-    success: 'bg-green-600 hover:bg-green-500 text-white shadow-lg shadow-green-950/40 focus:ring-green-500',
-    danger: 'bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-950/40 focus:ring-rose-500',
-    outline: 'border border-slate-700 hover:bg-slate-800 text-slate-300 focus:ring-slate-500',
-    ghost: 'hover:bg-slate-800/60 text-slate-300 hover:text-white focus:ring-slate-500',
+    primary: 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm hover:shadow-md focus:ring-indigo-500 active:bg-indigo-800',
+    secondary: 'bg-amber-500 hover:bg-amber-600 text-slate-950 shadow-sm hover:shadow-md focus:ring-amber-400 active:bg-amber-700',
+    success: 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm hover:shadow-md focus:ring-emerald-500 active:bg-emerald-800',
+    danger: 'bg-rose-600 hover:bg-rose-700 text-white shadow-sm hover:shadow-md focus:ring-rose-500 active:bg-rose-800',
+    outline: 'border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 focus:ring-slate-400 active:bg-slate-100 shadow-xs',
+    ghost: 'hover:bg-slate-100 text-slate-700 hover:text-slate-900 focus:ring-slate-300',
   };
 
   return (

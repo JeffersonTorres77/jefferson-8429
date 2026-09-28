@@ -209,25 +209,25 @@ export const SnailPayModal: FC<SnailPayModalProps> = ({ isOpen, onClose }) => {
 
         {/* Banner de Éxito */}
         {successData && (
-          <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 space-y-2 animate-fadeIn">
-            <div className="flex items-center gap-2 font-bold text-sm text-emerald-400">
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2 animate-fadeIn shadow-xs">
+            <div className="flex items-center gap-2 font-bold text-sm text-emerald-700">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
               <span>¡Recarga aprobada exitosamente!</span>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Se han acreditado <strong className="text-emerald-400 font-bold">${successData.amount.toFixed(2)}</strong> a tu saldo. Tu saldo se actualizó inmediatamente y quedó guardado en localStorage.
+            <p className="text-xs text-slate-700 leading-relaxed font-medium">
+              Se han acreditado <strong className="text-emerald-700 font-extrabold">${successData.amount.toFixed(2)}</strong> a tu saldo. Tu saldo se actualizó inmediatamente y quedó guardado en localStorage.
             </p>
-            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-emerald-500/20 text-[11px] font-mono text-slate-400">
-              <div>ID Op: <span className="text-slate-200">{successData.id}</span></div>
-              <div>Auth: <span className="text-emerald-400 font-bold">{successData.authCode}</span></div>
+            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-emerald-200 text-[11px] font-mono text-slate-600">
+              <div>ID Op: <span className="text-slate-900 font-semibold">{successData.id}</span></div>
+              <div>Auth: <span className="text-emerald-700 font-bold">{successData.authCode}</span></div>
             </div>
             <div className="pt-2">
               <Button
-                variant="secondary"
+                variant="outline"
                 size="sm"
                 onClick={handleResetForm}
                 leftIcon={<RotateCcw className="w-3.5 h-3.5" />}
-                className="w-full text-xs"
+                className="w-full text-xs font-semibold"
               >
                 Realizar otra transacción
               </Button>
@@ -237,15 +237,15 @@ export const SnailPayModal: FC<SnailPayModalProps> = ({ isOpen, onClose }) => {
 
         {/* Banner de Error */}
         {errorMsg && (
-          <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 space-y-1 animate-fadeIn">
-            <div className="flex items-center gap-2 font-bold text-sm text-rose-400">
-              <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />
+          <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 space-y-1 animate-fadeIn shadow-xs">
+            <div className="flex items-center gap-2 font-bold text-sm text-rose-700">
+              <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
               <span>Error en la Transacción</span>
             </div>
-            <p className="text-xs text-rose-200/90 leading-relaxed">
+            <p className="text-xs text-rose-800 leading-relaxed font-medium">
               {errorMsg}
             </p>
-            <p className="text-[11px] text-slate-400 pt-1">
+            <p className="text-[11px] text-slate-500 pt-1">
               * Nota: Como la transacción no fue aprobada, tu saldo no se modificó.
             </p>
           </div>
@@ -317,10 +317,10 @@ export const SnailPayModal: FC<SnailPayModalProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800">
+            <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-100">
               <Button
                 type="button"
-                variant="secondary"
+                variant="outline"
                 size="md"
                 onClick={onClose}
               >
@@ -328,7 +328,7 @@ export const SnailPayModal: FC<SnailPayModalProps> = ({ isOpen, onClose }) => {
               </Button>
               <Button
                 type="submit"
-                variant="success"
+                variant="primary"
                 size="md"
                 isLoading={isLoading}
                 leftIcon={<ShieldCheck className="w-4 h-4" />}

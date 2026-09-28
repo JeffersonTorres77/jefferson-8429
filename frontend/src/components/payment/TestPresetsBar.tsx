@@ -15,28 +15,28 @@ export const TestPresetsBar: FC<TestPresetsBarProps> = ({
   const getIcon = (scenarioName: string) => {
     switch (scenarioName) {
       case 'Cobro Exitoso':
-        return <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />;
+        return <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />;
       case 'Tarjeta Vencida':
-        return <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />;
+        return <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />;
       case 'CVV Incorrecto':
-        return <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />;
+        return <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />;
       case 'Tarjeta No Autorizada':
-        return <XCircle className="w-3.5 h-3.5 text-rose-400" />;
+        return <XCircle className="w-3.5 h-3.5 text-rose-600" />;
       case 'Error de Sistema':
-        return <ServerCrash className="w-3.5 h-3.5 text-rose-400" />;
+        return <ServerCrash className="w-3.5 h-3.5 text-rose-600" />;
       default:
-        return <Sparkles className="w-3.5 h-3.5 text-sky-400" />;
+        return <Sparkles className="w-3.5 h-3.5 text-primary-600" />;
     }
   };
 
   return (
-    <div className="space-y-2 p-3.5 rounded-xl bg-slate-950/80 border border-slate-800">
+    <div className="space-y-2 p-3.5 rounded-xl bg-slate-50 border border-slate-200">
       <div className="flex items-center justify-between">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+          <Sparkles className="w-3.5 h-3.5 text-primary-600" />
           Atajos de Prueba Rápida (Evaluación)
         </span>
-        <span className="text-[10px] text-slate-500">Auto-completar formulario</span>
+        <span className="text-[10px] text-slate-500 font-medium">Auto-completar formulario</span>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -49,15 +49,15 @@ export const TestPresetsBar: FC<TestPresetsBarProps> = ({
               onClick={() => onSelectPreset(preset)}
               className={`p-2 rounded-lg text-left transition-all border cursor-pointer ${
                 isSelected
-                  ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300 ring-1 ring-emerald-500/30'
-                  : 'bg-slate-900 hover:bg-slate-800/80 border-slate-800 text-slate-300'
+                  ? 'bg-primary-50 border-primary-300 text-primary-900 ring-2 ring-primary-500/20 shadow-xs'
+                  : 'bg-white hover:bg-slate-100/80 border-slate-200 text-slate-700 shadow-2xs'
               }`}
             >
-              <div className="flex items-center gap-1.5 font-semibold text-xs mb-0.5">
+              <div className="flex items-center gap-1.5 font-bold text-xs mb-0.5">
                 {getIcon(preset.name)}
                 <span className="truncate">{preset.name}</span>
               </div>
-              <div className="text-[10px] text-slate-400 truncate">
+              <div className="text-[10px] text-slate-500 truncate font-medium">
                 {preset.description}
               </div>
             </button>

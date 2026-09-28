@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { AuthProvider, useAuth } from '../context/AuthContext';
 import { LoginForm } from '../components/auth/LoginForm';
 import { RegisterForm } from '../components/auth/RegisterForm';
@@ -24,10 +25,12 @@ describe('Authentication & Session Flows', () => {
 
   it('debe registrar un usuario nuevo con saldo inicial $0.00 y establecer la sesión', async () => {
     render(
-      <AuthProvider>
-        <RegisterForm onSwitchToLogin={() => {}} />
-        <TestAuthConsumer />
-      </AuthProvider>
+      <MemoryRouter>
+        <AuthProvider>
+          <RegisterForm onSwitchToLogin={() => {}} />
+          <TestAuthConsumer />
+        </AuthProvider>
+      </MemoryRouter>
     );
 
     fireEvent.change(screen.getByLabelText(/nombre completo/i), {
@@ -59,9 +62,11 @@ describe('Authentication & Session Flows', () => {
 
   it('debe mostrar error si las contraseñas no coinciden en el registro', async () => {
     render(
-      <AuthProvider>
-        <RegisterForm onSwitchToLogin={() => {}} />
-      </AuthProvider>
+      <MemoryRouter>
+        <AuthProvider>
+          <RegisterForm onSwitchToLogin={() => {}} />
+        </AuthProvider>
+      </MemoryRouter>
     );
 
     fireEvent.change(screen.getByLabelText(/nombre completo/i), {
@@ -87,9 +92,11 @@ describe('Authentication & Session Flows', () => {
   it('debe permitir iniciar sesión con credenciales correctas y luego cerrar sesión', async () => {
     // 1. Registramos primero un usuario
     const { unmount } = render(
-      <AuthProvider>
-        <RegisterForm onSwitchToLogin={() => {}} />
-      </AuthProvider>
+      <MemoryRouter>
+        <AuthProvider>
+          <RegisterForm onSwitchToLogin={() => {}} />
+        </AuthProvider>
+      </MemoryRouter>
     );
 
     fireEvent.change(screen.getByLabelText(/nombre completo/i), {
@@ -115,10 +122,12 @@ describe('Authentication & Session Flows', () => {
 
     // 2. Renderizamos el LoginForm
     render(
-      <AuthProvider>
-        <LoginForm onSwitchToRegister={() => {}} />
-        <TestAuthConsumer />
-      </AuthProvider>
+      <MemoryRouter>
+        <AuthProvider>
+          <LoginForm onSwitchToRegister={() => {}} />
+          <TestAuthConsumer />
+        </AuthProvider>
+      </MemoryRouter>
     );
 
     fireEvent.change(screen.getByLabelText(/correo electrónico/i), {

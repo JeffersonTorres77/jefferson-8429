@@ -22,36 +22,36 @@ export const StatCard: FC<StatCardProps> = ({
   action,
 }) => {
   return (
-    <Card className="relative overflow-hidden group hover:border-slate-700 transition-all">
+    <Card className="relative overflow-hidden group hover:border-slate-300 transition-all bg-white">
       <div className="flex items-start justify-between">
         <div className="space-y-1">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
             {title}
           </p>
-          <div className="text-2xl font-extrabold text-white tracking-tight">
+          <div className="text-2xl font-extrabold text-slate-900 tracking-tight">
             {value}
           </div>
           {subtitle && (
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500 font-medium">
               {subtitle}
             </p>
           )}
         </div>
-        <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80 text-emerald-400 group-hover:scale-110 transition-transform">
+        <div className="p-3 rounded-xl bg-primary-50 border border-primary-100 text-primary-600 group-hover:scale-105 transition-transform">
           {icon}
         </div>
       </div>
 
       {(trend || action) && (
-        <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+        <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
           {trend && (
             <span
-              className={`text-xs font-medium flex items-center gap-1 ${
+              className={`text-xs font-semibold flex items-center gap-1 ${
                 trend.isPositive === true
-                  ? 'text-emerald-400'
+                  ? 'text-emerald-600'
                   : trend.isPositive === false
-                  ? 'text-rose-400'
-                  : 'text-slate-400'
+                  ? 'text-rose-600'
+                  : 'text-slate-500'
               }`}
             >
               {trend.label}

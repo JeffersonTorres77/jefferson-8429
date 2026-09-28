@@ -1,15 +1,17 @@
 import { useState, FormEvent, FC } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { Input } from '../common/Input';
 import { Button } from '../common/Button';
 import { Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
 
 interface LoginFormProps {
-  onSwitchToRegister: () => void;
+  onSwitchToRegister?: () => void;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({ onSwitchToRegister }) => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +31,8 @@ export const LoginForm: FC<LoginFormProps> = ({ onSwitchToRegister }) => {
       const res = await login({ email: email.trim(), password });
       if (!res.success) {
         setErrorMsg(res.message || 'Error al iniciar sesión.');
+      } else {
+        navigate('/dashboard');
       }
     } catch {
       setErrorMsg('Ocurrió un error inesperado al iniciar sesión.');
@@ -40,7 +44,7 @@ export const LoginForm: FC<LoginFormProps> = ({ onSwitchToRegister }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {errorMsg && (
-        <div className="p-3.5 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-2.5 text-rose-400 text-xs font-medium">
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2.5 text-rose-700 text-xs font-semibold">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMsg}</span>
         </div>
@@ -77,16 +81,25 @@ export const LoginForm: FC<LoginFormProps> = ({ onSwitchToRegister }) => {
         Iniciar Sesión
       </Button>
 
-      <div className="pt-4 text-center border-t border-slate-800">
-        <p className="text-xs text-slate-400">
+      <div className="pt-4 text-center border-t border-slate-100">
+        <p className="text-xs text-slate-500 font-medium">
           ¿No tienes una cuenta registrada?{' '}
-          <button
-            type="button"
-            onClick={onSwitchToRegister}
-            className="text-emerald-400 hover:text-emerald-300 font-semibold hover:underline cursor-pointer"
-          >
-            Registrarse aquí
-          </button>
+          {onSwitchToRegister ? (
+            <button
+              type="button"
+              onClick={onSwitchToRegister}
+              className="text-indigo-600 hover:text-indigo-800 font-bold hover:underline cursor-pointer"
+            >
+              Registrarse aquí
+            </button>
+          ) : (
+            <Link
+              to="/register"
+              className="text-indigo-600 hover:text-indigo-800 font-bold hover:underline"
+            >
+              Registrarse aquí
+            </Link>
+          )}
         </p>
       </div>
     </form>

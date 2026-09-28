@@ -1,15 +1,17 @@
 import { useState, FormEvent, FC } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { Input } from '../common/Input';
 import { Button } from '../common/Button';
 import { User, Mail, Lock, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface RegisterFormProps {
-  onSwitchToLogin: () => void;
+  onSwitchToLogin?: () => void;
 }
 
 export const RegisterForm: FC<RegisterFormProps> = ({ onSwitchToLogin }) => {
   const { register } = useAuth();
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,6 +49,8 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onSwitchToLogin }) => {
 
       if (!res.success) {
         setErrorMsg(res.message || 'Error al registrar el usuario.');
+      } else {
+        navigate('/dashboard');
       }
     } catch {
       setErrorMsg('Ocurrió un error inesperado al procesar el registro.');
@@ -58,7 +62,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onSwitchToLogin }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-3.5">
       {errorMsg && (
-        <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-2.5 text-rose-400 text-xs font-medium">
+        <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2.5 text-rose-700 text-xs font-semibold">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMsg}</span>
         </div>
@@ -114,16 +118,25 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onSwitchToLogin }) => {
         Crear Cuenta y Comenzar ($0.00)
       </Button>
 
-      <div className="pt-3.5 text-center border-t border-slate-800">
-        <p className="text-xs text-slate-400">
+      <div className="pt-3.5 text-center border-t border-slate-100">
+        <p className="text-xs text-slate-500 font-medium">
           ¿Ya tienes una cuenta registrada?{' '}
-          <button
-            type="button"
-            onClick={onSwitchToLogin}
-            className="text-emerald-400 hover:text-emerald-300 font-semibold hover:underline cursor-pointer"
-          >
-            Iniciar sesión
-          </button>
+          {onSwitchToLogin ? (
+            <button
+              type="button"
+              onClick={onSwitchToLogin}
+              className="text-indigo-600 hover:text-indigo-800 font-bold hover:underline cursor-pointer"
+            >
+              Iniciar sesión
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="text-indigo-600 hover:text-indigo-800 font-bold hover:underline"
+            >
+              Iniciar sesión
+            </Link>
+          )}
         </p>
       </div>
     </form>
